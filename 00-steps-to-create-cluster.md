@@ -28,23 +28,30 @@
     <details>
 
       ```
-       # rename hosts 
+       # rename hosts
        # remove the older containerd config
        # create new default containerd config, change systemdcgroup true
+       hostnamectl set-hostname master # node01, node02
        cd /etc/containerd
        echo > config.toml
        containerd config default > config.toml
+       # vi config.toml # edit tehe systemdcgroup = true
        systemctl daemon-reload
        systemctl restart containerd
       ```
     
      </details>
 
- 4. kubeadm init # on master node
+ 4. kubeadm init & pod-network plugin (weavenet)
      <details>
         
      ```
      # run weavenet pod-network (overlay) addon
+
+     https://kubernetes.io/docs/concepts/cluster-administration/addons/
+     https://www.weave.works/docs/net/latest/kubernetes/kube-addon/
+     
+     kubeadm init # on master node
      kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
      ```
      
@@ -54,6 +61,9 @@
       <details>
 
       ```
+      # if kubeadm join command lost
+      # kubeadm token create --print-join-command
+      
       kubeadm join # with token and other args, run on worker nodes
       ```
       </details>
