@@ -15,7 +15,9 @@
     <details> 
     
     ```
-    ssh to master  
+    ssh to master
+    sudo apt update -y
+    sudo apt install git net-tools tree -y
     git clone <ajaykasam, cka repo>
     cd cka
     sh install.sh
