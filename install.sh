@@ -1,8 +1,8 @@
 #ubuntu 22.04 LTS machine
 
 # disable firewall
-systemctl stop ufw
-systemctl disable ufw
+sudo systemctl stop ufw
+sudo systemctl disable ufw
 
 #disable swap
 sudo swapoff -a
